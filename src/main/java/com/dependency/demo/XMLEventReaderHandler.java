@@ -47,7 +47,7 @@ public class XMLEventReaderHandler {
                    }
                    break;
                case XMLStreamConstants.CHARACTERS:
-                   break;
+                   breaks;
 
            }
         }
