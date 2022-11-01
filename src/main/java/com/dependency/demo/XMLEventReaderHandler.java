@@ -37,8 +37,10 @@ public class XMLEventReaderHandler {
                        cpe_item.addTitle(title);
                        title.setName(((StartElement)xmlEvent).getAttributeByName(new QName("en-US","xml","lang")).toString());
                    }
+                   else if ((((StartElement)xmlEvent).getName()).getLocalPart().equals("references")) {
 
-                   else if((((StartElement)xmlEvent).getName()).getLocalPart().equals("cpe-23"))  {
+
+                   } else if((((StartElement)xmlEvent).getName()).getLocalPart().equals("cpe-23"))  {
                        cpe_23 = new Cpe_23();
                        cpe_item.addTitle(cpe_23);
                        cpe_23.setName(((StartElement)xmlEvent).getAttributeByName(new QName("name","name","cpe23-item"))).toString());
