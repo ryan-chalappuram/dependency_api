@@ -1,5 +1,8 @@
 package com.dependency.demo;
 
+import org.json.JSONObject;
+import org.json.XML;
+
 import javax.xml.stream.FactoryConfigurationError;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.transform.*;
@@ -11,18 +14,17 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 public class driver {
-    public static final String FILE_NAME= "test.xml";
-    public static void main(String[] args)throws FileNotFoundException, XMLStreamException, FactoryConfigurationError,TransformerException {
+
+    public static void main(String[] args) {
        //System.out.println((new staxhandler()).processXMLFile(new File(FILE_NAME)).toString());
-        System.out.println(transformXML(4,(new staxhandler()).processXMLFile(new File(FILE_NAME)).toString()));
+
+
+//        String soapmessageString = "read";
+//        JSONObject soapDatainJsonObject = XML.toJSONObject(soapmessageString);
+//        System.out.println(soapDatainJsonObject);
+//        JSONObject json = XML.toJSONObject(read);
+//        String jsonString = json.toString(4);
+//        System.out.println(jsonString);
     }
-    public static String transformXML(int indentation ,String rawXML) throws TransformerException {
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        transformerFactory.setAttribute("indent-number",indentation);
-        Transformer transformer = transformerFactory.newTransformer();
-        transformer.setOutputProperty(OutputKeys.INDENT,"yes");
-        StreamResult streamResult = new StreamResult(new StringWriter());
-        transformer.transform(new StreamSource(new StringReader(rawXML)),streamResult);
-        return streamResult.getWriter().toString();
-    }
+
 }
