@@ -22,7 +22,7 @@ public class XmlToJson {
 
 
     public void ToXml() throws FileNotFoundException, XMLStreamException, FactoryConfigurationError,TransformerException{
-        transformXML(4,(new staxhandler()).processXMLFile(new File(FILE_NAME)).toString());
+        transformXML(4,(new StaxHandler()).processXMLFile(new File(FILE_NAME)).toString());
         JSONObject json = XML.toJSONObject(read);
         String jsonString = json.toString(4);
         System.out.println(jsonString);

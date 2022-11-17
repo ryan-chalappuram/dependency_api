@@ -8,7 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 
-public class staxhandler {
+public class StaxHandler {
     public StringBuffer processXMLFile(File xMLFile) throws FileNotFoundException, XMLStreamException, FactoryConfigurationError
     {
         XMLEvent xmlEvent = null;
@@ -33,11 +33,13 @@ public class staxhandler {
                         if(attribute.getName().toString().equals("href")){
                             rawXML.append(attribute.getValue());
                         }
+                        else if (attribute.getName().toString().equals("name")){
+                            rawXML.append(attribute.getValue());
+                        }
+
                     }
-
-//                    rawXML.append((xmlEvent).asStartElement().getAttributeByName());
-
                     break;
+
                 case XMLStreamConstants.CHARACTERS:
                     characters = (Characters) xmlEvent;
                     if(!(characters.isWhiteSpace() || characters.isIgnorableWhiteSpace())) rawXML.append(characters.getData());
