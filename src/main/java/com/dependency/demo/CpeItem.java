@@ -1,21 +1,34 @@
 package com.dependency.demo;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
-import lombok.Data;
 
-import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
 
 @Data
-@JacksonXmlRootElement(localName = "cpe-item")
-public class CpeItem {
-    @JacksonXmlProperty(localName = "name",isAttribute = true)
-    private String name;
+@Entity
+//@AllArgsConstructor
+@Table
+@Embeddable
+@NoArgsConstructor
+public class CpeItem{
 
-
-    private String title;
-
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @JsonProperty("references")
+//    @OneToOne(cascade = CascadeType.ALL)
+    @Embedded
+    public References references;
+    @JsonProperty("title")
+    public String title;
+    @JsonProperty("content")
+    public String content;
+    @JsonProperty("cpe23-item")
+    public String cpe23_item;
 }

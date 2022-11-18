@@ -21,11 +21,12 @@ public class XmlToJson {
     public String read;
 
 
-    public void ToXml() throws FileNotFoundException, XMLStreamException, FactoryConfigurationError,TransformerException{
+    public String ToXml() throws FileNotFoundException, XMLStreamException, FactoryConfigurationError,TransformerException{
         transformXML(4,(new StaxHandler()).processXMLFile(new File(FILE_NAME)).toString());
         JSONObject json = XML.toJSONObject(read);
         String jsonString = json.toString(4);
-        System.out.println(jsonString);
+        return jsonString;
+//        System.out.println(jsonString);
     }
     public  String transformXML(int indentation ,String rawXML) throws TransformerException {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();

@@ -1,32 +1,29 @@
 package com.dependency.demo;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table
+//@AllArgsConstructor
 @Data
-@JacksonXmlRootElement(localName = "cpe-list")
+@Embeddable
+@JsonIgnoreProperties
+@NoArgsConstructor
 public class CpeList {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-
-
-//    @JacksonXmlProperty(isAttribute = true,localName = "name")
-//    private String name;
-
-
-@JacksonXmlElementWrapper(localName = "cpe-item")
-//    private CpeItem cpeItem;
-    private CpeItem cpeItems;
-
-
+        @JsonProperty("cpe-item")
+        //@OneToMany(cascade = CascadeType.ALL)
+        @Embedded
+        private List<CpeItem> cpeItems;
 
 }
